@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditTextSecond;
     private TextView mTextViewCountDown;
     private Button mButtonSet;
+    private ImageView mImageViewFlagClass;
+    private ImageView mImageViewFlagPapa;
 
     private SoundPool soundPool;
     //private int sound1;
@@ -41,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mImageViewFlagClass = (ImageView) findViewById(R.id.image_flag_class);
+        mImageViewFlagPapa = (ImageView) findViewById(R.id.image_flag_papa);
+        mImageViewFlagClass.setImageResource(R.drawable.flag_pennant_one);
+        mImageViewFlagPapa.setImageResource(R.drawable.flag_papa);
 
 
         mEditTextHour = findViewById(R.id.edit_text_hour);
@@ -135,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 updateWatchInterface();
             }
         }.start();
@@ -158,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCountDownText() {
-        String prefix = "";
         long timeLeftInMillis = mEndTime - System.currentTimeMillis();
         int timeLeftInSecs = (int) timeLeftInMillis / 1000;
         if (timeLeftInSecs < -60) {
@@ -167,19 +175,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if (timeLeftInSecs < 0) {
             mTextViewCountDown.setTextColor(android.graphics.Color.RED);
-            timeLeftInSecs = -timeLeftInSecs;
-            prefix = "-";
         }
-        int hours = timeLeftInSecs / 3600;
-        int minutes = timeLeftInSecs % 3600 / 60;
-        int seconds = timeLeftInSecs % 60;
-        String timeLeftFormatted;
-        if (hours > 0) {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
-        } else {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-        }
-        mTextViewCountDown.setText(prefix + timeLeftFormatted);
+        mTextViewCountDown.setText(formatTimeStr(timeLeftInSecs));
 
         if (null != sounds){
             int id = sounds.get(timeLeftInSecs, -1);
@@ -187,6 +184,34 @@ public class MainActivity extends AppCompatActivity {
                 playSound(id);
                 sounds.delete(timeLeftInSecs); // avoid repeat; todo: is this recoverable
             }
+        }
+        updateFlags(timeLeftInSecs);
+    }
+
+    private String formatTimeStr(int timeLeftInSecs) {
+        String prefix = timeLeftInSecs < 0 ? "-" : "";
+        int hours = java.lang.Math.abs(timeLeftInSecs / 3600);
+        int minutes = java.lang.Math.abs(timeLeftInSecs % 3600 / 60);
+        int seconds = java.lang.Math.abs(timeLeftInSecs % 60);
+        String timeLeftFormatted;
+        if (hours > 0) {
+            timeLeftFormatted = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
+        } else {
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        }
+        return timeLeftFormatted;
+    }
+
+    private void updateFlags(int timeLeftinSecs) {
+        if (timeLeftinSecs <= 300 && timeLeftinSecs > 0) {
+            mImageViewFlagClass.setVisibility(View.VISIBLE);
+        } else {
+            mImageViewFlagClass.setVisibility(View.INVISIBLE);
+        }
+        if (timeLeftinSecs <= 240 && timeLeftinSecs > 60) {
+            mImageViewFlagPapa.setVisibility(View.VISIBLE);
+        } else {
+            mImageViewFlagPapa.setVisibility(View.INVISIBLE);
         }
     }
 

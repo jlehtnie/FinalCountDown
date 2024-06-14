@@ -48,4 +48,21 @@
         android:textColor="@android:color/black"
         android:textSize="100sp" />
 
+    <ImageView
+        android:id="@+id/image_flag_class"
+        android:layout_width="320px"
+        android:layout_height="200px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="50px"
+        android:layout_marginBottom="50dp" />
+
+    <ImageView
+        android:id="@+id/image_flag_papa"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/image_flag_class"
+        android:layout_marginBottom="50px"
+    />
 </RelativeLayout>
