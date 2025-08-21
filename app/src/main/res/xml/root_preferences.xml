@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/pref_time_header">
+
+        <ListPreference
+            app:key="pref_selected_time"
+            app:title="@string/pref_selected_time_title"
+            app:summary="@string/pref_selected_time_summary"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="pref_add_time"
+            app:title="@string/pref_add_time_title"
+            app:summary="@string/pref_add_time_summary" />
+
+        <Preference
+            app:key="pref_remove_time"
+            app:title="@string/pref_remove_time_title"
+            app:summary="@string/pref_remove_time_summary" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
