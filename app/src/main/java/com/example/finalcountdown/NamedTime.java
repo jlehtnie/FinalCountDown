@@ -5,6 +5,10 @@ public class NamedTime {
     private String time;
     private String id;
 
+    // No-arg constructor for Gson deserialization
+    public NamedTime() {
+    }
+
     public NamedTime(String name, String time) {
         this.name = name;
         this.time = time;
@@ -37,8 +41,14 @@ public class NamedTime {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return name + " (" + time + ")";
     }
 }
+
+
