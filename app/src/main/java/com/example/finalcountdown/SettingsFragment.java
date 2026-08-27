@@ -177,101 +177,46 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void showRemoveTimeDialog() {
-        // Use the activity context instead of fragment context to avoid dialog nesting issues
         final android.content.Context context = getActivity() != null ? getActivity() : requireContext();
-        
-        // Reload times to ensure we have the latest data
+
         loadNamedTimes();
-        
-        // Ensure IDs are set for all times
-        if (namedTimes != null) {
-            for (NamedTime time : namedTimes) {
-                if (time != null && (time.getId() == null || time.getId().isEmpty())) {
-                    String id = System.currentTimeMillis() + "_" + (time.getName() != null ? time.getName().hashCode() : 0);
-                    time.setId(id);
-                }
-            }
-            // Save back to ensure IDs are persisted
-            if (!namedTimes.isEmpty()) {
-                saveNamedTimes();
-                // Reload again to get the updated list
-                loadNamedTimes();
-            }
-        }
-        
+
         if (namedTimes == null || namedTimes.isEmpty()) {
             Toast.makeText(context, "No times available to remove. Please add a time first.", Toast.LENGTH_LONG).show();
             return;
         }
-        
-        // Build the display names array - only include valid items
+
         final List<NamedTime> validTimes = new ArrayList<>();
         for (NamedTime time : namedTimes) {
-            if (time != null && time.getName() != null && !time.getName().trim().isEmpty() 
-                && time.getTime() != null && !time.getTime().trim().isEmpty()) {
+            if (time != null && time.getName() != null && !time.getName().trim().isEmpty()
+                    && time.getTime() != null && !time.getTime().trim().isEmpty()) {
                 validTimes.add(time);
             }
         }
-        
-        // Check if we have valid times to show
+
         if (validTimes.isEmpty()) {
             Toast.makeText(context, "No valid times found to remove.", Toast.LENGTH_SHORT).show();
             return;
         }
-        
+
         if (validTimes.size() <= 1) {
             Toast.makeText(context, R.string.remove_time_error, Toast.LENGTH_SHORT).show();
             return;
         }
-        
-        // Build adapter data
-        final List<String> displayNames = new ArrayList<>();
-        for (NamedTime time : validTimes) {
-            displayNames.add(time.getName() + " (" + time.getTime() + ")");
-        }
-        
-        // Create final list for removal (by reference to actual objects)
-        final List<NamedTime> finalTimesList = new ArrayList<>(validTimes);
 
-        // Use activity context for the dialog to avoid nesting issues
+        String[] displayNames = new String[validTimes.size()];
+        for (int i = 0; i < validTimes.size(); i++) {
+            displayNames[i] = validTimes.get(i).getName() + " (" + validTimes.get(i).getTime() + ")";
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.remove_time_dialog_title);
-        
-        // Create a ListView with the items
-        android.widget.ListView listView = new android.widget.ListView(context);
-        android.widget.ArrayAdapter<String> adapter = new android.widget.ArrayAdapter<>(
-            context,
-            android.R.layout.simple_list_item_1,
-            displayNames
-        );
-        listView.setAdapter(adapter);
-        
-        builder.setView(listView);
-        builder.setNegativeButton(R.string.cancel, null);
-        
-        AlertDialog dialog = builder.create();
-        
-        // Handle item click - use final reference to dialog
-        final AlertDialog finalDialog = dialog;
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            if (position < 0 || position >= finalTimesList.size()) {
-                Toast.makeText(context, "Invalid selection", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            
-            // Get the time to remove
-            NamedTime timeToRemove = finalTimesList.get(position);
-            if (timeToRemove == null || timeToRemove.getId() == null) {
-                Toast.makeText(context, "Invalid time selected", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            
+        builder.setItems(displayNames, (dialog, which) -> {
+            NamedTime timeToRemove = validTimes.get(which);
             String timeToRemoveId = timeToRemove.getId();
-            
-            // Reload to get current state
+
             loadNamedTimes();
-            
-            // Find and remove the time by ID (more reliable than by index)
+
             NamedTime toRemove = null;
             for (NamedTime time : namedTimes) {
                 if (time != null && time.getId() != null && time.getId().equals(timeToRemoveId)) {
@@ -279,23 +224,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     break;
                 }
             }
-            
+
             if (toRemove == null) {
                 Toast.makeText(context, "Time not found", Toast.LENGTH_SHORT).show();
                 return;
             }
-            
-            // Check if this is the currently selected time
+
             String selectedId = selectedTimePreference != null ? selectedTimePreference.getValue() : null;
             boolean wasSelected = selectedId != null && timeToRemoveId.equals(selectedId);
-            
-            // Remove the time
+
             namedTimes.remove(toRemove);
-            
-            // If we removed the selected time, select a new one
+
             if (wasSelected && selectedTimePreference != null) {
                 if (!namedTimes.isEmpty()) {
-                    // Select the first available time
                     String newSelectedId = namedTimes.get(0).getId();
                     if (newSelectedId != null) {
                         selectedTimePreference.setValue(newSelectedId);
@@ -304,14 +245,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     selectedTimePreference.setValue("");
                 }
             }
-            
-            // Save the changes
+
             saveNamedTimes();
             Toast.makeText(context, R.string.remove_time_success, Toast.LENGTH_SHORT).show();
-            finalDialog.dismiss();
         });
-        
-        dialog.show();
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
     }
 
     private String parseAndFormatTime(String input) {
