@@ -23,4 +23,11 @@
     <string name="remove_time_dialog_message">Select a time to remove:</string>
     <string name="remove_time_success">Time removed successfully</string>
     <string name="remove_time_error">Cannot remove the last time</string>
+
+    <!-- Flag Preferences -->
+    <string name="pref_flags_header">Flag Settings</string>
+    <string name="pref_class_flag_title">Class Flag</string>
+    <string name="pref_class_flag_summary">Flag shown at 5 minutes</string>
+    <string name="pref_prep_flag_title">Preparatory Flag</string>
+    <string name="pref_prep_flag_summary">Flag shown at 4 minutes</string>
 </resources>

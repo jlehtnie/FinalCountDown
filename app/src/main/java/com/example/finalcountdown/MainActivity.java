@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextViewTargetTimeName;
     private ImageView mImageViewFlagClass;
     private ImageView mImageViewFlagPapa;
+    private SharedPreferences.OnSharedPreferenceChangeListener mPrefChangeListener;
 
     private SoundPool soundPool;
     //private int sound1;
@@ -71,8 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
         mImageViewFlagClass = (ImageView) findViewById(R.id.image_flag_class);
         mImageViewFlagPapa = (ImageView) findViewById(R.id.image_flag_papa);
-        mImageViewFlagClass.setImageResource(R.drawable.flag_pennant_one);
-        mImageViewFlagPapa.setImageResource(R.drawable.flag_papa);
+        loadFlagImages();
+
+        SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefChangeListener = (prefs, key) -> {
+            if ("pref_class_flag".equals(key) || "pref_prep_flag".equals(key)) {
+                loadFlagImages();
+            }
+        };
+        defaultPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
 
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         mTextViewTargetTime = findViewById(R.id.text_view_target_time);
@@ -265,6 +273,25 @@ public class MainActivity extends AppCompatActivity {
         return timeLeftFormatted;
     }
 
+    private void loadFlagImages() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String classKey = prefs.getString("pref_class_flag", "flag_pennant_one");
+        String prepKey = prefs.getString("pref_prep_flag", "flag_papa");
+        mImageViewFlagClass.setImageResource(getFlagDrawable(classKey));
+        mImageViewFlagPapa.setImageResource(getFlagDrawable(prepKey));
+    }
+
+    private int getFlagDrawable(String key) {
+        switch (key) {
+            case "flag_papa":       return R.drawable.flag_papa;
+            case "flag_i":          return R.drawable.flag_i;
+            case "flag_z":          return R.drawable.flag_z;
+            case "flag_u":          return R.drawable.flag_u;
+            case "flag_black":      return R.drawable.flag_black;
+            default:                return R.drawable.flag_pennant_one;
+        }
+    }
+
     private void updateFlags(int timeLeftinSecs) {
         if (timeLeftinSecs <= 300 && timeLeftinSecs > 0) {
             mImageViewFlagClass.setVisibility(View.VISIBLE);
@@ -288,6 +315,13 @@ public class MainActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        defaultPrefs.unregisterOnSharedPreferenceChangeListener(mPrefChangeListener);
     }
 
     @Override

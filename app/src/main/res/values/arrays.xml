@@ -9,4 +9,38 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <!-- Class flag choices (any signal flag) -->
+    <string-array name="class_flag_entries">
+        <item>Pennant 1</item>
+        <item>Blue Peter (P)</item>
+        <item>Flag I</item>
+        <item>Flag Z</item>
+        <item>Flag U</item>
+        <item>Black Flag</item>
+    </string-array>
+    <string-array name="class_flag_entry_values">
+        <item>flag_pennant_one</item>
+        <item>flag_papa</item>
+        <item>flag_i</item>
+        <item>flag_z</item>
+        <item>flag_u</item>
+        <item>flag_black</item>
+    </string-array>
+
+    <!-- Preparatory flag choices -->
+    <string-array name="prep_flag_entries">
+        <item>Blue Peter (P)</item>
+        <item>Flag I</item>
+        <item>Flag Z</item>
+        <item>Flag U</item>
+        <item>Black Flag</item>
+    </string-array>
+    <string-array name="prep_flag_entry_values">
+        <item>flag_papa</item>
+        <item>flag_i</item>
+        <item>flag_z</item>
+        <item>flag_u</item>
+        <item>flag_black</item>
+    </string-array>
 </resources>

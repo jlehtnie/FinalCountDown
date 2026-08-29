@@ -21,4 +21,26 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/pref_flags_header">
+
+        <ListPreference
+            app:key="pref_class_flag"
+            app:title="@string/pref_class_flag_title"
+            app:summary="@string/pref_class_flag_summary"
+            app:entries="@array/class_flag_entries"
+            app:entryValues="@array/class_flag_entry_values"
+            app:defaultValue="flag_pennant_one"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:key="pref_prep_flag"
+            app:title="@string/pref_prep_flag_title"
+            app:summary="@string/pref_prep_flag_summary"
+            app:entries="@array/prep_flag_entries"
+            app:entryValues="@array/prep_flag_entry_values"
+            app:defaultValue="flag_papa"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
