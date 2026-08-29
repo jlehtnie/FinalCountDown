@@ -29,7 +29,7 @@
             app:summary="@string/pref_class_flag_summary"
             app:entries="@array/class_flag_entries"
             app:entryValues="@array/class_flag_entry_values"
-            app:defaultValue="flag_pennant_one"
+            app:defaultValue="flag_pennant_1"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference

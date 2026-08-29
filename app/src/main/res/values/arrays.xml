@@ -54,7 +54,7 @@
     </string-array>
     <string-array name="class_flag_entry_values">
         <item>flag_pennant_0</item>
-        <item>flag_pennant_one</item>
+        <item>flag_pennant_1</item>
         <item>flag_pennant_2</item>
         <item>flag_pennant_3</item>
         <item>flag_pennant_4</item>

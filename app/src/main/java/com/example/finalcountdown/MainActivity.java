@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadFlagImages() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String classKey = prefs.getString("pref_class_flag", "flag_pennant_one");
+        String classKey = prefs.getString("pref_class_flag", "flag_pennant_1");
         String prepKey = prefs.getString("pref_prep_flag", "flag_papa");
         mImageViewFlagClass.setImageResource(getFlagDrawable(classKey));
         mImageViewFlagPapa.setImageResource(getFlagDrawable(prepKey));
@@ -283,14 +283,17 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFlagDrawable(String key) {
         switch (key) {
-            // existing prep-flag assets
-            case "flag_papa":        return R.drawable.flag_papa;
-            case "flag_i":           return R.drawable.flag_i;
-            case "flag_z":           return R.drawable.flag_z;
-            case "flag_u":           return R.drawable.flag_u;
+            // prep-flag keys → correct Wikimedia letter-flag vectors
+            case "flag_papa":        return R.drawable.flag_letter_p;
+            case "flag_i":           return R.drawable.flag_letter_i;
+            case "flag_z":           return R.drawable.flag_letter_z;
+            case "flag_u":           return R.drawable.flag_letter_u;
             case "flag_black":       return R.drawable.flag_black;
+            // backward-compat key for old stored preference
+            case "flag_pennant_one": return R.drawable.flag_pennant_1;
             // numeral pennants
             case "flag_pennant_0":   return R.drawable.flag_pennant_0;
+            case "flag_pennant_1":   return R.drawable.flag_pennant_1;
             case "flag_pennant_2":   return R.drawable.flag_pennant_2;
             case "flag_pennant_3":   return R.drawable.flag_pennant_3;
             case "flag_pennant_4":   return R.drawable.flag_pennant_4;
