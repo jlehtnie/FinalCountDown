@@ -6,7 +6,9 @@
     <!-- Top triangle: yellow -->
     <path
         android:fillColor="#FFD700"
-        android:pathData="M0,0 L320,0 L160,100 Z" />
+        android:pathData="M0,0 L320,0 L160,100 Z"
+        android:strokeColor="#000000"
+        android:strokeWidth="2.133333" />
     <!-- Right triangle: black -->
     <path
         android:fillColor="#000000"
