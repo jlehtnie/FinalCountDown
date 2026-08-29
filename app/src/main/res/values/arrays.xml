@@ -10,22 +10,88 @@
         <item>reply_all</item>
     </string-array>
 
-    <!-- Class flag choices (any signal flag) -->
+    <!-- Class flag choices (full ICS signal flag set) -->
     <string-array name="class_flag_entries">
+        <item>Pennant 0</item>
         <item>Pennant 1</item>
-        <item>Blue Peter (P)</item>
+        <item>Pennant 2</item>
+        <item>Pennant 3</item>
+        <item>Pennant 4</item>
+        <item>Pennant 5</item>
+        <item>Pennant 6</item>
+        <item>Pennant 7</item>
+        <item>Pennant 8</item>
+        <item>Pennant 9</item>
+        <item>Flag A</item>
+        <item>Flag B</item>
+        <item>Flag C</item>
+        <item>Flag D</item>
+        <item>Flag E</item>
+        <item>Flag F</item>
+        <item>Flag G</item>
+        <item>Flag H</item>
         <item>Flag I</item>
-        <item>Flag Z</item>
+        <item>Flag J</item>
+        <item>Flag K</item>
+        <item>Flag L</item>
+        <item>Flag M</item>
+        <item>Flag N</item>
+        <item>Flag O</item>
+        <item>Flag P</item>
+        <item>Flag Q</item>
+        <item>Flag R</item>
+        <item>Flag S</item>
+        <item>Flag T</item>
         <item>Flag U</item>
-        <item>Black Flag</item>
+        <item>Flag V</item>
+        <item>Flag W</item>
+        <item>Flag X</item>
+        <item>Flag Y</item>
+        <item>Flag Z</item>
+        <item>1st Substitute</item>
+        <item>2nd Substitute</item>
+        <item>3rd Substitute</item>
     </string-array>
     <string-array name="class_flag_entry_values">
+        <item>flag_pennant_0</item>
         <item>flag_pennant_one</item>
-        <item>flag_papa</item>
-        <item>flag_i</item>
-        <item>flag_z</item>
-        <item>flag_u</item>
-        <item>flag_black</item>
+        <item>flag_pennant_2</item>
+        <item>flag_pennant_3</item>
+        <item>flag_pennant_4</item>
+        <item>flag_pennant_5</item>
+        <item>flag_pennant_6</item>
+        <item>flag_pennant_7</item>
+        <item>flag_pennant_8</item>
+        <item>flag_pennant_9</item>
+        <item>flag_letter_a</item>
+        <item>flag_letter_b</item>
+        <item>flag_letter_c</item>
+        <item>flag_letter_d</item>
+        <item>flag_letter_e</item>
+        <item>flag_letter_f</item>
+        <item>flag_letter_g</item>
+        <item>flag_letter_h</item>
+        <item>flag_letter_i</item>
+        <item>flag_letter_j</item>
+        <item>flag_letter_k</item>
+        <item>flag_letter_l</item>
+        <item>flag_letter_m</item>
+        <item>flag_letter_n</item>
+        <item>flag_letter_o</item>
+        <item>flag_letter_p</item>
+        <item>flag_letter_q</item>
+        <item>flag_letter_r</item>
+        <item>flag_letter_s</item>
+        <item>flag_letter_t</item>
+        <item>flag_letter_u</item>
+        <item>flag_letter_v</item>
+        <item>flag_letter_w</item>
+        <item>flag_letter_x</item>
+        <item>flag_letter_y</item>
+        <item>flag_letter_z</item>
+        <item>flag_sub_1</item>
+        <item>flag_sub_2</item>
+        <item>flag_sub_3</item>
     </string-array>
 
     <!-- Preparatory flag choices -->

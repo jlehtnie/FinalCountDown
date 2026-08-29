@@ -283,12 +283,54 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFlagDrawable(String key) {
         switch (key) {
-            case "flag_papa":       return R.drawable.flag_papa;
-            case "flag_i":          return R.drawable.flag_i;
-            case "flag_z":          return R.drawable.flag_z;
-            case "flag_u":          return R.drawable.flag_u;
-            case "flag_black":      return R.drawable.flag_black;
-            default:                return R.drawable.flag_pennant_one;
+            // existing prep-flag assets
+            case "flag_papa":        return R.drawable.flag_papa;
+            case "flag_i":           return R.drawable.flag_i;
+            case "flag_z":           return R.drawable.flag_z;
+            case "flag_u":           return R.drawable.flag_u;
+            case "flag_black":       return R.drawable.flag_black;
+            // numeral pennants
+            case "flag_pennant_0":   return R.drawable.flag_pennant_0;
+            case "flag_pennant_2":   return R.drawable.flag_pennant_2;
+            case "flag_pennant_3":   return R.drawable.flag_pennant_3;
+            case "flag_pennant_4":   return R.drawable.flag_pennant_4;
+            case "flag_pennant_5":   return R.drawable.flag_pennant_5;
+            case "flag_pennant_6":   return R.drawable.flag_pennant_6;
+            case "flag_pennant_7":   return R.drawable.flag_pennant_7;
+            case "flag_pennant_8":   return R.drawable.flag_pennant_8;
+            case "flag_pennant_9":   return R.drawable.flag_pennant_9;
+            // letter flags A-Z
+            case "flag_letter_a":    return R.drawable.flag_letter_a;
+            case "flag_letter_b":    return R.drawable.flag_letter_b;
+            case "flag_letter_c":    return R.drawable.flag_letter_c;
+            case "flag_letter_d":    return R.drawable.flag_letter_d;
+            case "flag_letter_e":    return R.drawable.flag_letter_e;
+            case "flag_letter_f":    return R.drawable.flag_letter_f;
+            case "flag_letter_g":    return R.drawable.flag_letter_g;
+            case "flag_letter_h":    return R.drawable.flag_letter_h;
+            case "flag_letter_i":    return R.drawable.flag_letter_i;
+            case "flag_letter_j":    return R.drawable.flag_letter_j;
+            case "flag_letter_k":    return R.drawable.flag_letter_k;
+            case "flag_letter_l":    return R.drawable.flag_letter_l;
+            case "flag_letter_m":    return R.drawable.flag_letter_m;
+            case "flag_letter_n":    return R.drawable.flag_letter_n;
+            case "flag_letter_o":    return R.drawable.flag_letter_o;
+            case "flag_letter_p":    return R.drawable.flag_letter_p;
+            case "flag_letter_q":    return R.drawable.flag_letter_q;
+            case "flag_letter_r":    return R.drawable.flag_letter_r;
+            case "flag_letter_s":    return R.drawable.flag_letter_s;
+            case "flag_letter_t":    return R.drawable.flag_letter_t;
+            case "flag_letter_u":    return R.drawable.flag_letter_u;
+            case "flag_letter_v":    return R.drawable.flag_letter_v;
+            case "flag_letter_w":    return R.drawable.flag_letter_w;
+            case "flag_letter_x":    return R.drawable.flag_letter_x;
+            case "flag_letter_y":    return R.drawable.flag_letter_y;
+            case "flag_letter_z":    return R.drawable.flag_letter_z;
+            // substitute flags
+            case "flag_sub_1":       return R.drawable.flag_sub_1;
+            case "flag_sub_2":       return R.drawable.flag_sub_2;
+            case "flag_sub_3":       return R.drawable.flag_sub_3;
+            default:                 return R.drawable.flag_pennant_one;
         }
     }
 
